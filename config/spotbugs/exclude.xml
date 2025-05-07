@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- Исключения для сгенерированного кода -->
+    <Match>
+        <Class name="~.*\$\$.*"/>
+    </Match>
+    <!-- Другие исключения можно добавить здесь -->
+</FindBugsFilter>

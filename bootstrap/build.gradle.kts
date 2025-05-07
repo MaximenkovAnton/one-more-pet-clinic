@@ -11,13 +11,13 @@ dependencies {
     implementation(project(":port-output"))
     implementation(project(":adapter-input"))
     implementation(project(":adapter-output"))
-    
+
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
-    
+
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
