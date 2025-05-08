@@ -80,6 +80,9 @@
 # Запуск SpotBugs
 ./gradlew spotbugsMain
 
+# Запуск ArchUnit
+./gradlew :architecture-tests:test
+
 # Запуск всех проверок качества кода
 ./gradlew codeQuality
 

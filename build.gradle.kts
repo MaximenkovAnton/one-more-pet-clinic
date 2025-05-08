@@ -50,7 +50,7 @@ subprojects {
         testLogging {
             events("passed", "skipped", "failed")
         }
-        finalizedBy(tasks.withType<JacocoReport>())
+        finalizedBy(tasks.named("jacocoTestReport"))
     }
 
     // Добавляем зависимости для тестирования
@@ -123,5 +123,5 @@ ktlint {
 tasks.register("codeQuality") {
     group = "verification"
     description = "Runs all code quality checks"
-    dependsOn("detekt", "ktlintCheck")
+    dependsOn("detekt", "ktlintCheck", ":architecture-tests:test")
 }
