@@ -7,9 +7,9 @@ plugins {
     // static analyzer
     id("io.gitlab.arturbosch.detekt") version "1.23.4"
     id("org.jlleitschuh.gradle.ktlint") version "11.3.2"
-
-    // pitest
-    id("info.solidsoft.pitest") version "1.7.0"
+    
+    // code coverage
+    id("jacoco")
 }
 
 allprojects {
@@ -24,13 +24,13 @@ allprojects {
     apply {
         plugin("io.gitlab.arturbosch.detekt")
         plugin("org.jlleitschuh.gradle.ktlint")
-        plugin("info.solidsoft.pitest")
     }
 }
 
 subprojects {
     apply {
         plugin("org.jetbrains.kotlin.jvm")
+        plugin("jacoco")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -50,6 +50,7 @@ subprojects {
         testLogging {
             events("passed", "skipped", "failed")
         }
+        finalizedBy(tasks.withType<JacocoReport>())
     }
 
     // Добавляем зависимости для тестирования
@@ -69,9 +70,33 @@ subprojects {
 
         // MockK
         "testImplementation"("io.mockk:mockk:$mockkVersion")
-
-        // pitest
-        "testImplementation"("info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.15.0")
+    }
+    
+    // Настройка JaCoCo
+    tasks.withType<JacocoReport> {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            csv.required.set(false)
+        }
+    }
+    
+    // Настройка проверки покрытия
+    tasks.withType<JacocoCoverageVerification> {
+        violationRules {
+            rule {
+                limit {
+                    minimum = "0.8".toBigDecimal()
+                }
+            }
+        }
+    }
+    
+    // Задача для проверки покрытия
+    tasks.register("checkCoverage") {
+        group = "verification"
+        description = "Runs tests and verifies code coverage"
+        dependsOn("test", "jacocoTestReport", "jacocoTestCoverageVerification")
     }
 }
 
