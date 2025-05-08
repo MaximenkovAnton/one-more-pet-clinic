@@ -24,31 +24,35 @@ class PhoneTest {
     fun `should create Phone when value is valid`(input: String, expected: String) {
         // Act
         val phone = Phone.of(input)
-        
+
         // Assert
         assertEquals(expected, phone.value)
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [
-        "", // пустой номер
-        "      ", // одни пробелы
-    ])
+    @ValueSource(
+        strings = [
+            "", // пустой номер
+            "      " // одни пробелы
+        ]
+    )
     fun `should throw PhoneIsEmptyValidationException when value is blank`(value: String) {
         assertThrows<PhoneIsEmptyValidationException> { Phone.of(value) }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [
-        "+phone", // не номер
-        "+7912345678901234567890", // слишком длинный
-        "123456", // слишком короткий
-        "++79031234567", // двойной плюс
-        // неверные форматы
-        "7 (999) 123-45+67",
-        "7 (999) 123-45&67",
-        "7 (999) 123-45-as",
-    ])
+    @ValueSource(
+        strings = [
+            "+phone", // не номер
+            "+7912345678901234567890", // слишком длинный
+            "123456", // слишком короткий
+            "++79031234567", // двойной плюс
+            // неверные форматы
+            "7 (999) 123-45+67",
+            "7 (999) 123-45&67",
+            "7 (999) 123-45-as"
+        ]
+    )
     fun `should throw PhoneInvalidFormatValidationException when format is invalid`(invalidPhone: String) {
         // Act & Assert
         assertThrows<PhoneInvalidFormatValidationException> { Phone.of(invalidPhone) }

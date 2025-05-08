@@ -1,5 +1,7 @@
 dependencies {
     implementation(project(":domain"))
+    api(project(":port-input"))
+    api(project(":port-output"))
 
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))

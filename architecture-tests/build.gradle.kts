@@ -11,10 +11,10 @@ dependencies {
     implementation(project(":port-output"))
     implementation(project(":adapter-input"))
     implementation(project(":adapter-output"))
-    
+
     // ArchUnit
     testImplementation("com.tngtech.archunit:archunit-junit5:1.2.0")
-    
+
     // JUnit 5
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0")

@@ -1,6 +1,5 @@
 dependencies {
     implementation(project(":domain"))
-    implementation(project(":application"))
 
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))

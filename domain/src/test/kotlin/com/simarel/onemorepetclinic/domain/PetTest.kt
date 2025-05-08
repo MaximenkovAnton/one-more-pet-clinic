@@ -18,7 +18,7 @@ class PetTest {
         val birthday = ValueObjectFactory.createBirthday()
         val type = ValueObjectFactory.createPetType()
         val owner = DomainObjectFactory.createOwner()
-        
+
         // Act
         val pet = DomainObjectFactory.createPet(
             id = id,
@@ -27,7 +27,7 @@ class PetTest {
             type = type,
             owner = owner
         )
-        
+
         // Assert
         assertEquals(id, pet.id)
         assertEquals(name, pet.name)
@@ -35,7 +35,7 @@ class PetTest {
         assertEquals(type, pet.type)
         assertEquals(owner, pet.owner)
     }
-    
+
     @ParameterizedTest
     @EnumSource(PetType::class)
     fun `should create Pet with different types`(petType: PetType) {
@@ -43,7 +43,7 @@ class PetTest {
         val pet = DomainObjectFactory.createPet(
             type = petType
         )
-        
+
         // Assert
         assertEquals(petType, pet.type)
     }

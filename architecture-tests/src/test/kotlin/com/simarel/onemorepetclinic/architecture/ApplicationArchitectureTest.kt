@@ -1,23 +1,25 @@
 package com.simarel.onemorepetclinic.architecture
 
+import com.simarel.onemorepetclinic.architecture.constant.KnownFolder
+import com.simarel.onemorepetclinic.architecture.constant.Package
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes
-import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 import org.junit.jupiter.api.Test
 
 class ApplicationArchitectureTest : BaseArchitectureTest() {
-    
+
     @Test
     fun `application should only depend on domain and port`() {
-        val rule = classes().that().resideInAPackage(PACKAGES.APPLICATION.toString())
+        val rule = classes().that().resideInAPackage(Package.APPLICATION.toString())
             .should().onlyDependOnClassesThat().resideInAnyPackage(
-                PACKAGES.APPLICATION.toString(),
-                PACKAGES.DOMAIN.toString(),
-                PACKAGES.PORT_INPUT.toString(),
-                PACKAGES.PORT_OUTPUT.toString(),
-                "java..",
-                "kotlin.."
+                Package.APPLICATION.toString(),
+                Package.DOMAIN.toString(),
+                Package.PORT_INPUT.toString(),
+                Package.PORT_OUTPUT.toString(),
+                KnownFolder.JAVA.toString(),
+                KnownFolder.KOTLIN.toString(),
+                KnownFolder.JETBRAINS_ANNOTATIONS.toString()
             )
-        
+
         rule.check(allClasses)
     }
 }

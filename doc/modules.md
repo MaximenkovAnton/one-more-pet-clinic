@@ -23,9 +23,11 @@
 - `Owner` - доменная модель владельца питомца
 - `Pet` - доменная модель питомца
 - `Visit` - доменная модель визита к ветеринару
-- `PetType` - тип питомца (кошка, собака и т.д.)
-- `Name` - value object для имени
-- `Email` - value object для email
+- `Vet` - доменная модель ветеринара
+- `FirstName` - value object для имени
+- `LastName` - value object для фамилии
+- `Address` - value object для адреса
+- `Phone` - value object для телефона
 
 ### Application
 
@@ -34,17 +36,19 @@
 **Ответственность:**
 - Реализация бизнес-логики приложения
 - Оркестрация взаимодействия между доменными объектами
-- Определение интерфейсов для внешних зависимостей (репозитории, сервисы)
+- Реализация use cases для различных операций
 
 **Зависимости:**
 - Domain
+- Port-Input
+- Port-Output
 
 **Примеры классов:**
-- `OwnerService` - сервис для работы с владельцами
-- `PetService` - сервис для работы с питомцами
-- `VisitService` - сервис для работы с визитами
-- `OwnerRegistrationUseCase` - сценарий регистрации нового владельца
-- `PetRegistrationUseCase` - сценарий регистрации нового питомца
+- `CreateOwnerUseCase` - use case для создания владельца
+- `ReadOwnerUseCase` - use case для чтения информации о владельце
+- `UpdateOwnerUseCase` - use case для обновления информации о владельце
+- `DeleteOwnerUseCase` - use case для удаления владельца
+- `ListOwnerUseCase` - use case для получения списка владельцев
 
 ### Port
 
@@ -60,13 +64,14 @@
 
 **Зависимости:**
 - Domain
-- Application
 
 **Примеры классов:**
-- `OwnerController` - интерфейс для контроллера владельцев
-- `PetController` - интерфейс для контроллера питомцев
-- `VisitController` - интерфейс для контроллера визитов
-- `OwnerDTO` - DTO для передачи данных о владельце
+- `InputPort` - общий функциональный интерфейс для всех входных портов
+- `CreateOwnerPort` - порт для создания владельца
+- `ReadOwnerPort` - порт для чтения информации о владельце
+- `UpdateOwnerPort` - порт для обновления информации о владельце
+- `DeleteOwnerPort` - порт для удаления владельца
+- `ListOwnerPort` - порт для получения списка владельцев
 
 #### port-output
 
@@ -78,13 +83,13 @@
 
 **Зависимости:**
 - Domain
-- Application
 
 **Примеры классов:**
-- `OwnerRepository` - интерфейс для репозитория владельцев
-- `PetRepository` - интерфейс для репозитория питомцев
-- `VisitRepository` - интерфейс для репозитория визитов
-- `NotificationService` - интерфейс для сервиса уведомлений
+- `OutputPort` - общий функциональный интерфейс для всех выходных портов
+- `SaveOwnerPort` - порт для сохранения владельца
+- `FetchOwnerPort` - порт для получения информации о владельце
+- `RemoveOwnerPort` - порт для удаления владельца
+- `FetchAllOwnersPort` - порт для получения списка владельцев
 
 ### Adapter
 
@@ -101,12 +106,13 @@
 
 **Зависимости:**
 - Domain
+- Port-Input
 - Application
-- port-input
 
 **Примеры классов:**
 - `OwnerRestController` - REST-контроллер для работы с владельцами
 - `PetRestController` - REST-контроллер для работы с питомцами
+- `VetRestController` - REST-контроллер для работы с ветеринарами
 - `VisitRestController` - REST-контроллер для работы с визитами
 
 #### adapter-output
@@ -120,14 +126,13 @@
 
 **Зависимости:**
 - Domain
-- Application
-- port-output
+- Port-Output
 
 **Примеры классов:**
 - `JpaOwnerRepository` - JPA-репозиторий для работы с владельцами
 - `JpaPetRepository` - JPA-репозиторий для работы с питомцами
+- `JpaVetRepository` - JPA-репозиторий для работы с ветеринарами
 - `JpaVisitRepository` - JPA-репозиторий для работы с визитами
-- `EmailNotificationService` - сервис уведомлений по email
 
 ### Bootstrap
 
@@ -139,16 +144,30 @@
 - Запуск приложения
 
 **Зависимости:**
+
+***Внутренние***
 - Domain
 - Application
-- port-input
-- port-output
-- adapter-input
-- adapter-output
+- Port-Input
+- Port-Output
+- Adapter-Input
+- Adapter-Output
+
+***Внешние***
 - Spring Boot
 
-**Примеры классов:**
-- `Application` - основной класс приложения
-- `ApplicationConfig` - конфигурация приложения
-- `SecurityConfig` - конфигурация безопасности
-- `DatabaseConfig` - конфигурация базы данных
+## Взаимодействие между модулями
+
+Взаимодействие между модулями строго контролируется для соблюдения принципов чистой архитектуры:
+
+1. **Domain** не зависит ни от каких других модулей.
+2. **Application** зависит от Domain и использует порты (Port-Input и Port-Output) для взаимодействия с внешним миром.
+3. **Port-Input** и **Port-Output** зависят только от Domain.
+4. **Adapter-Input** зависит от Port-Input и Domain.
+5. **Adapter-Output** зависит от Port-Output и Domain.
+6. **Bootstrap** зависит от всех остальных модулей и собирает их вместе.
+
+Такая структура зависимостей обеспечивает:
+- Независимость бизнес-логики от внешних систем
+- Возможность замены адаптеров без изменения бизнес-логики
+- Тестируемость каждого модуля в изоляции

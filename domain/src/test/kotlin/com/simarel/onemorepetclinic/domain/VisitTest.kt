@@ -15,7 +15,7 @@ class VisitTest {
         val date = ValueObjectFactory.createVisitDate()
         val description = ValueObjectFactory.createDescription()
         val pet = DomainObjectFactory.createPet()
-        
+
         // Act
         val visit = DomainObjectFactory.createVisit(
             id = id,
@@ -23,24 +23,24 @@ class VisitTest {
             description = description,
             pet = pet
         )
-        
+
         // Assert
         assertEquals(id, visit.id)
         assertEquals(date, visit.date)
         assertEquals(description, visit.description)
         assertEquals(pet, visit.pet)
     }
-    
+
     @Test
     fun `should create Visit with future date`() {
         // Arrange
         val futureDate = ValueObjectFactory.createVisitDate(LocalDate.now().plusDays(30))
-        
+
         // Act
         val visit = DomainObjectFactory.createVisit(
             date = futureDate
         )
-        
+
         // Assert
         assertEquals(futureDate, visit.date)
     }

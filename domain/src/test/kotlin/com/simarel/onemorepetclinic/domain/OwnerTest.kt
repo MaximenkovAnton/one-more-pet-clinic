@@ -18,7 +18,7 @@ class OwnerTest {
         val address = ValueObjectFactory.createAddress()
         val city = ValueObjectFactory.createCity()
         val phone = ValueObjectFactory.createPhone()
-        
+
         // Act
         val owner = DomainObjectFactory.createOwner(
             id = id,
@@ -29,7 +29,7 @@ class OwnerTest {
             city = city,
             phone = phone
         )
-        
+
         // Assert
         assertEquals(id, owner.id)
         assertEquals(firstName, owner.firstName)
@@ -40,13 +40,13 @@ class OwnerTest {
         assertEquals(phone, owner.phone)
         assertTrue(owner.pets.isEmpty())
     }
-    
+
     @Test
     fun `should create Owner with pets`() {
         // Arrange
         val ownerWithoutPets = DomainObjectFactory.createOwner()
         val pet = DomainObjectFactory.createPet(owner = ownerWithoutPets)
-        
+
         // Act
         val ownerWithPet = DomainObjectFactory.createOwner(
             id = ownerWithoutPets.id,
@@ -58,7 +58,7 @@ class OwnerTest {
             phone = ownerWithoutPets.phone,
             pets = setOf(pet)
         )
-        
+
         // Assert
         assertEquals(1, ownerWithPet.pets.size)
         val petFromOwner = ownerWithPet.pets.first()
@@ -68,7 +68,7 @@ class OwnerTest {
         assertEquals(pet.type, petFromOwner.type)
         assertEquals(ownerWithoutPets.id, petFromOwner.owner.id)
     }
-    
+
     @Test
     fun `should be equal when all properties are equal`() {
         // Arrange
@@ -79,7 +79,7 @@ class OwnerTest {
         val address = ValueObjectFactory.createAddress()
         val city = ValueObjectFactory.createCity()
         val phone = ValueObjectFactory.createPhone()
-        
+
         // Act
         val owner1 = DomainObjectFactory.createOwner(
             id = id,
@@ -90,7 +90,7 @@ class OwnerTest {
             city = city,
             phone = phone
         )
-        
+
         val owner2 = DomainObjectFactory.createOwner(
             id = id,
             firstName = firstName,
@@ -100,7 +100,7 @@ class OwnerTest {
             city = city,
             phone = phone
         )
-        
+
         // Assert
         assertEquals(owner1, owner2)
         assertEquals(owner1.hashCode(), owner2.hashCode())

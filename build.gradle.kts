@@ -7,7 +7,7 @@ plugins {
     // static analyzer
     id("io.gitlab.arturbosch.detekt") version "1.23.4"
     id("org.jlleitschuh.gradle.ktlint") version "11.3.2"
-    
+
     // code coverage
     id("jacoco")
 }
@@ -71,7 +71,7 @@ subprojects {
         // MockK
         "testImplementation"("io.mockk:mockk:$mockkVersion")
     }
-    
+
     // Настройка JaCoCo
     tasks.withType<JacocoReport> {
         reports {
@@ -80,7 +80,7 @@ subprojects {
             csv.required.set(false)
         }
     }
-    
+
     // Настройка проверки покрытия
     tasks.withType<JacocoCoverageVerification> {
         violationRules {
@@ -91,7 +91,7 @@ subprojects {
             }
         }
     }
-    
+
     // Задача для проверки покрытия
     tasks.register("checkCoverage") {
         group = "verification"

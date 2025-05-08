@@ -13,14 +13,14 @@ value class Phone private constructor(override val value: String) : ValueObject<
             if (value.isBlank()) {
                 throw PhoneIsEmptyValidationException()
             }
-            
+
             // Сохраняем плюс в начале, если он есть, и удаляем только пробелы, скобки и дефисы
             val cleanedValue = value.replace(CLEANUP_REGEX, "")
-            
+
             if (!PHONE_REGEX.matches(cleanedValue)) {
                 throw PhoneInvalidFormatValidationException()
             }
-            
+
             return Phone(cleanedValue)
         }
     }
