@@ -60,11 +60,6 @@ out/
 
 ### VS Code ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
 .history/
 *.vsix
 
@@ -150,9 +145,6 @@ $RECYCLE.BIN/
 
 # Local configuration file (sdk path, etc)
 local.properties
-
-# Log Files
-*.log
 
 # Keystore files
 *.jks
