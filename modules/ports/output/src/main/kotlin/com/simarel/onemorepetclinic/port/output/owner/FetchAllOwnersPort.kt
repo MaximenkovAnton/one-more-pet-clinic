@@ -1,8 +1,8 @@
 package com.simarel.onemorepetclinic.port.output.owner
 
 import com.simarel.onemorepetclinic.domain.Owner
-import com.simarel.onemorepetclinic.domain.valueobject.pagination.PaginationInfo
 import com.simarel.onemorepetclinic.domain.valueobject.Count
+import com.simarel.onemorepetclinic.domain.valueobject.pagination.PaginationInfo
 import com.simarel.onemorepetclinic.port.output.OutputPort
 
 fun interface FetchAllOwnersPort : OutputPort<FetchAllOwnersRequest, FetchAllOwnersResponse>

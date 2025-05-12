@@ -9,10 +9,10 @@ import java.util.UUID
  */
 interface EntityId : ValueObject<UUID?> {
     override val value: UUID?
-    
+
     override fun toString(): String
 }
 
-abstract class EntityIdValidationException(message: String): ValidationException(message)
+abstract class EntityIdValidationException(message: String) : ValidationException(message)
 
 class InvalidEntityIdFormatException : EntityIdValidationException("Неверный формат идентификатора")

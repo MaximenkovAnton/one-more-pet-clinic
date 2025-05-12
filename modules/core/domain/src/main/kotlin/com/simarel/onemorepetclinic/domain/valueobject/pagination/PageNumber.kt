@@ -19,4 +19,4 @@ value class PageNumber private constructor(override val value: Int) : ValueObjec
 
 abstract class PageNumberValidationException(message: String) : ValidationException(message)
 
-class NegativePageNumberValidationException: PageNumberValidationException("Номер страницы не может быть отрицательным")
+class NegativePageNumberValidationException : PageNumberValidationException("Номер страницы не может быть отрицательным")

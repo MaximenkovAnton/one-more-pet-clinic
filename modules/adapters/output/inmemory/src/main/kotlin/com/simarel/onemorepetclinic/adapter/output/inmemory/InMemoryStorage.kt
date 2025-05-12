@@ -21,13 +21,13 @@ class InMemoryStorage<ID : EntityId, T : Any> {
         val allEntities = storage.values.toList()
         val startIndex = paginationInfo.pageNumber.value * paginationInfo.pageSize.value
         val endIndex = minOf(startIndex + paginationInfo.pageSize.value, allEntities.size)
-        
+
         val paginatedEntities = if (startIndex < allEntities.size) {
             allEntities.subList(startIndex, endIndex)
         } else {
             emptyList()
         }
-        
+
         return Pair(paginatedEntities, Count.of(allEntities.size.toLong()))
     }
 

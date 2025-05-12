@@ -14,6 +14,6 @@ value class Speciality private constructor(override val value: String) : ValueOb
     }
 }
 
-abstract class SpecialityValidationException(message: String): ValidationException(message)
+abstract class SpecialityValidationException(message: String) : ValidationException(message)
 
 class SpecialityIsEmptyValidationException : SpecialityValidationException("Специальность не может быть пустой")

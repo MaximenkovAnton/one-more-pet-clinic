@@ -1,9 +1,9 @@
 package com.simarel.onemorepetclinic.domain
 
+import com.simarel.onemorepetclinic.domain.valueobject.PetType
 import com.simarel.onemorepetclinic.test.utils.domain.factory.DomainObjectFactory
 import com.simarel.onemorepetclinic.test.utils.domain.factory.IdFactory
 import com.simarel.onemorepetclinic.test.utils.domain.factory.ValueObjectFactory
-import com.simarel.onemorepetclinic.domain.valueobject.PetType
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest

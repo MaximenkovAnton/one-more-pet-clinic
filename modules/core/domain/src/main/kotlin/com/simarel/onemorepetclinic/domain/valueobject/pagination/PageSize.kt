@@ -25,5 +25,5 @@ value class PageSize private constructor(override val value: Int) : ValueObject<
 
 abstract class PageSizeValidationException(message: String) : ValidationException(message)
 
-class NegativePageSizeValidationException: PageSizeValidationException("Размер страницы должен быть положительным числом")
-class TooBigPageSizeValidationException: PageSizeValidationException("Размер страницы не может превышать $MAX_PAGE_SIZE")
+class NegativePageSizeValidationException : PageSizeValidationException("Размер страницы должен быть положительным числом")
+class TooBigPageSizeValidationException : PageSizeValidationException("Размер страницы не может превышать $MAX_PAGE_SIZE")
