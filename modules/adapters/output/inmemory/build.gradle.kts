@@ -1,8 +1,6 @@
 dependencies {
     implementation(project(":domain"))
-    implementation(project(":application"))
     implementation(project(":port-output"))
-    api(project(":adapter-output:inmemory"))
 
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))

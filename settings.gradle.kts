@@ -21,6 +21,9 @@ project(":adapter-input").projectDir = file("modules/adapters/input")
 include("adapter-output")
 project(":adapter-output").projectDir = file("modules/adapters/output")
 
+include("adapter-output:inmemory")
+project(":adapter-output:inmemory").projectDir = file("modules/adapters/output/inmemory")
+
 // Bootstrap
 include("bootstrap")
 project(":bootstrap").projectDir = file("modules/bootstrap")

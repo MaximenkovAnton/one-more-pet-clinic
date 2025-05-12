@@ -3,14 +3,14 @@ package com.simarel.onemorepetclinic.port.input.visit
 import com.simarel.onemorepetclinic.domain.Visit
 import com.simarel.onemorepetclinic.domain.valueobject.pagination.PaginationInfo
 import com.simarel.onemorepetclinic.domain.valueobject.Count
-import com.simarel.onemorepetclinic.domain.valueobject.Id
+import com.simarel.onemorepetclinic.domain.valueobject.id.PetId
 import com.simarel.onemorepetclinic.port.input.InputPort
 
 fun interface ListVisitPort : InputPort<ListVisitRequest, ListVisitResponse>
 
 class ListVisitRequest(
     val paginationInfo: PaginationInfo,
-    val petId: Id?,
+    val petId: PetId?,
 )
 
 class ListVisitResponse(
