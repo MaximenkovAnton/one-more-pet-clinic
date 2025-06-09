@@ -2,5 +2,6 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "workbench.editorAssociations": {
         "*.md": "default"
-      }
+      },
+      "java.compile.nullAnalysis.mode": "automatic"
 }

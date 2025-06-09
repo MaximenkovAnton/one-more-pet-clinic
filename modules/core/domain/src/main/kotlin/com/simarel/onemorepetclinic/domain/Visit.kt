@@ -8,5 +8,6 @@ class Visit(
     val id: VisitId,
     val date: VisitDate,
     val description: Description,
-    val pet: Pet
+    val pet: Pet,
+    val vet: Vet,
 )

@@ -57,6 +57,7 @@ object DomainObjectFactory {
         id: VisitId = IdFactory.createVisitId(),
         date: VisitDate = ValueObjectFactory.createVisitDate(),
         description: Description = ValueObjectFactory.createDescription(),
-        pet: Pet = createPet()
-    ): Visit = Visit(id, date, description, pet)
+        pet: Pet = createPet(),
+        vet: Vet = createVet()
+    ): Visit = Visit(id, date, description, pet, vet)
 }
